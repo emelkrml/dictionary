@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     # custom users app
     'dictionary2.users.apps.UsersConfig',
+    'dictionary2.baslik',
     # Your stuff: custom apps go here
 )
 
@@ -99,8 +100,10 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db('DATABASE_URL', default='postgres:///dictionary2'),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
