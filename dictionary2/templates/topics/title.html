@@ -1,0 +1,14 @@
+{% extends "base2.html" %}
+
+{% block tab-content %}
+
+    {% if topics %}
+        {% for t in topics %}
+            <h4>{{ t.title }}</h4>
+            <p>{{ t.content }}</p>
+        {% endfor %}
+    {% else %}
+        <p class="lead">Baslık yok</p>
+    {% endif %}
+
+{% endblock tab-content %}

@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles i18n%}
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
@@ -63,28 +63,39 @@
     				<div class="input-group">
 				      <input type="text" class="form-control" placeholder="Search for...">
 				      <span class="input-group-btn">
-				        <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-search"></i></button>
-				      </span>
+                        <button type="button" class="btn btn-success">
+                                  <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                      </span>
 				    </div><!-- /input-group -->
     			</div>
     			<div class="col-lg-2"></div>
     			<div class="col-lg-2 pull-left">
-                    {% if user.is_authenticated %}
-                        <li class="drop">
-	    					<button class="btn ucNokta dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						   	 ...
-						  	</button>
-						  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-						    	<li><a data-toggle="tab" href="kanallar">Kanallar</a></li>
-						    	<li><a data-toggle="tab" href="ayarlar">Ayarlar</a></li>
-						    	<li role="separator" class="divider"></li>
-						    	<li><a data-toggle="tab" href="terk">Terk</a></li>
-						  	</ul>
-					  	</li>
-                    {% else %}
-                        <a href="/login/">Giriş</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    				    <a href="#">Kayıt Ol</a>
-                    {% endif %}
+
+                        {% if request.user.is_authenticated %}
+                            <ul class="nav-item">
+                              <a class="nav-link" href="{% url 'users:detail' request.user.username  %}"><span class="glyphicon glyphicon-search" aria-hidden="true">{% trans "Ben" %}</span></a>
+                                <button class="btn ucNokta dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    ...
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li><a data-toggle="tab" href="#kanallar">#kanallar</a></li>
+                                    <li><a data-toggle="tab" href="{% url 'account_logout' %}">#ayarlar</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="nav-link" href="{% url 'account_logout' %}">{% trans "Terk" %}</a></li>
+                                </ul>
+
+                        {% else %}
+
+                                <li class="nav-item">
+                                  <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Kayıt Ol" %}</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Giriş" %}</a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
     			</div>
     			<div class="col-lg-1"></div>
     		</div>
@@ -92,10 +103,12 @@
     			<div class="col-lg-1"></div>
     			<div class="col-lg-6">
     				<ul class="nav nav-pills ustMenu">
-    					<li class="active"><a data-toggle="tab" href="#bugun">bugün</a></li>
+    					<li class="active"><a data-toggle="tab" href="#">bugün</a></li>
     					<li><a data-toggle="tab" href="#populer">popüler</a></li>
     					<li><a data-toggle="tab" href="#badi">badi</a></li>
+                        {% if request.user.is_authenticated %}
     					<li><a data-toggle="tab" href="#caylaklar">çaylaklar</a></li>
+                        {% endif %}
     					<li><a data-toggle="tab" href="#spor">#spor</a></li>
     					<li><a data-toggle="tab" href="#edebiyat">#edebiyat</a></li>
     					<li><a data-toggle="tab" href="#siyaset">#siyaset</a></li>
@@ -129,37 +142,32 @@
 
     <div class="container-fluid">
     	<div class="row content">
-    		<div class="col-lg-3 ">
+    		<div class="col-lg-2">
                 <div id="bugun" class="tab-pane fade in active">
-                    <h3><a href="#">Bugün</a></h3>
-                    <ul class="nav nav-tabs"></ul>
-                    <ul class="nav nav-pills nav-stacked"></ul>
-
-                    {%  for baslik in title %}
-                        {{ baslik }}
-                    {% endfor %}
-                     <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></p>
-                     <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></p>
-                     <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></p>
+                    <h3><a href="#">Bugün{{ category }}</a></h3>
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active"><a href="#">gundem</a></li>
+		    		</ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            {% block nav-stacked %}
+                            {% endblock nav-stacked %}
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></li>
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></li>
+                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></li>
+                        </li>
+                    </ul>
                 </div>
             </div>
     		<div class="col-lg-6">
     			<div class="tab-content">
-                    <div id="bugun" class="tab-pane fade in active">
-                        <h3><a href="#">Gündem</a></h3>
-                        <ul class="nav nav-tabs"></ul>
-                        <ul class="nav nav-pills nav-stacked"></ul>
-                        {%  for baslik in basliklar %}
-                            <li><p>{{ baslik.title }}</p></li>
-                        {%  endfor %}
-
+                    <div class="baslik">
+                        {% block tab-content %}
+                        {% endblock tab-content %}
                         <hr>
                     </div>
     			</div>
     		</div>
-    		<div class="col-lg-3">
-                <h3><a href="#">Başıboşlar :))</a></h3>
-            </div>
     	</div>
     </div>
     <footer class="container-fluid text-center">

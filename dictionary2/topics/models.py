@@ -5,9 +5,11 @@ from django.core.urlresolvers import reverse
 from dictionary2.users.models import User
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from django.core.validators import validate_slug
+
 
 class Category(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.title
@@ -22,7 +24,8 @@ class Category(models.Model):
 
     """
 
-class Baslik(models.Model):
+
+class Topic(models.Model):
     user = models.ForeignKey(
         User,
         verbose_name=_("User")
@@ -33,6 +36,8 @@ class Baslik(models.Model):
         unique=True,
         verbose_name=_("Title")
     )
+
+    slug = models.SlugField(unique=True)
 
     created_at = models.DateTimeField(
         auto_now=True,
@@ -45,6 +50,10 @@ class Baslik(models.Model):
         verbose_name=_("Category")
     )
 
+    def __unicode__(self):
+        return self.slug
+
+
 class Entry(models.Model):
     user = models.ForeignKey(
         User,
@@ -52,8 +61,8 @@ class Entry(models.Model):
     )
 
     title = models.ForeignKey(
-        Baslik,
-        verbose_name=_("Baslik")
+        Topic,
+        verbose_name=_("Topic")
     )
 
     content = models.TextField(
@@ -64,3 +73,15 @@ class Entry(models.Model):
         auto_now=True,
         verbose_name=_("Created_at")
     )
+
+class Favorite(models.Model):
+    entry = models.ForeignKey(
+        Entry
+    )
+
+    user = models.ForeignKey(
+        User,
+    )
+
+    class meta:
+        unique_together = (('entry', 'user'),)

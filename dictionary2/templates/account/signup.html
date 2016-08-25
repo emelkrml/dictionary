@@ -1,9 +1,10 @@
-{% extends "account/base2.html" %}
+{% extends "base2.html" %}
 
 {% load i18n %}
+{% block tab-content %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head_title %}{% endblock %}
 
 {% block inner %}
 <h1>{% trans "Sign Up" %}</h1>
@@ -16,8 +17,9 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <button class="btn btn-success" type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 
 {% endblock %}
+{% endblock tab-content %}
 
