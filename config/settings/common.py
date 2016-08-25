@@ -9,7 +9,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
-from django.contrib.auth import views as auth_views
 import environ
 
 
@@ -48,8 +47,7 @@ LOCAL_APPS = (
     'dictionary2.users.apps.UsersConfig',
 
     # Your stuff: custom apps go here
-    'dictionary2.baslik',
-    'login',
+    'dictionary2.topics',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -170,7 +168,7 @@ TEMPLATES = [
     },
 ]
 
-SECRET_KEY = 'sy4^yvhaybb0kiv-^8nelr0nslo+vv#nat+z$d(ao6z6vv&=y='
+SECRET_KEY = 'vb(db=vwznw!ma9rf%^&+f!@k5__7fn8g#+67u#@dxev%1&wp7'
 # See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -228,7 +226,7 @@ SOCIALACCOUNT_ADAPTER = 'dictionary2.users.adapters.SocialAccountAdapter'
 # Select the correct user model
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'users:redirect'
-LOGIN_URL = 'login/login'
+LOGIN_URL = 'accounts'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'

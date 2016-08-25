@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('baslik', '0001_initial'),
+        ('topics', '0001_initial'),
     ]
 
     operations = [
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('content', models.TextField(verbose_name='Content')),
                 ('created_at', models.DateTimeField(auto_now=True, verbose_name='Created_at')),
-                ('title', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='baslik.Baslik', verbose_name='Baslik')),
+                ('title', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='topics.Topic', verbose_name='Topic')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='User')),
             ],
         ),

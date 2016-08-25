@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='baslik',
+            name='topics',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=140, unique=True, verbose_name='Title')),
@@ -32,12 +32,12 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-            model_name='baslik',
+            model_name='topics',
             name='category',
-            field=models.ManyToManyField(blank=True, to='baslik.Category', verbose_name='Category'),
+            field=models.ManyToManyField(blank=True, to='topics.Category', verbose_name='Category'),
         ),
         migrations.AddField(
-            model_name='baslik',
+            model_name='topics',
             name='user',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='User'),
         ),
