@@ -1,0 +1,16 @@
+{% extends "base2.html" %}
+{% block title %}User Registration{% endblock %}
+{% block head %}User Registration{% endblock %}
+<body>
+{% if registered %}
+        <a href="/login/">Login</a> says: thank you for registering.
+{% else %}
+        rango says: register here!
+        <form id="user_form" method="post" action="/login/register/" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ uform.as_p }}
+
+                <input type="submit" name="submit" value="submit" />
+        </form>
+{% endif %}
+</body>

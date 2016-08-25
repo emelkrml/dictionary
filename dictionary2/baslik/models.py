@@ -22,7 +22,7 @@ class Category(models.Model):
 
     """
 
-class baslik(models.Model):
+class Baslik(models.Model):
     user = models.ForeignKey(
         User,
         verbose_name=_("User")
@@ -43,4 +43,24 @@ class baslik(models.Model):
         Category,
         blank=True,
         verbose_name=_("Category")
+    )
+
+class Entry(models.Model):
+    user = models.ForeignKey(
+        User,
+        verbose_name=_("User")
+    )
+
+    title = models.ForeignKey(
+        Baslik,
+        verbose_name=_("Baslik")
+    )
+
+    content = models.TextField(
+        verbose_name=_("Content")
+    )
+
+    created_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_("Created_at")
     )

@@ -7,6 +7,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from django.contrib.auth import views
+from django.contrib.auth import views as auth_views
+
+
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='base2.html'), name='home'),
@@ -19,7 +23,13 @@ urlpatterns = [
     url(r'^users/', include('dictionary2.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
 
+
     # Your stuff: custom urls includes go here
+    # login
+    url(r'^login/$', views.user_login, name='login'),
+    #url(r'^logout/$', auth_views.logout, name='logout'),
+
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

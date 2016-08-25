@@ -9,8 +9,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
-
+from django.contrib.auth import views as auth_views
 import environ
+
 
 ROOT_DIR = environ.Path(__file__) - 3  # (dictionary2/config/settings/common.py - 3 = dictionary2/)
 APPS_DIR = ROOT_DIR.path('dictionary2')
@@ -45,8 +46,10 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     # custom users app
     'dictionary2.users.apps.UsersConfig',
-    'dictionary2.baslik',
+
     # Your stuff: custom apps go here
+    'dictionary2.baslik',
+    'login',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -167,6 +170,7 @@ TEMPLATES = [
     },
 ]
 
+SECRET_KEY = 'sy4^yvhaybb0kiv-^8nelr0nslo+vv#nat+z$d(ao6z6vv&=y='
 # See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -224,7 +228,7 @@ SOCIALACCOUNT_ADAPTER = 'dictionary2.users.adapters.SocialAccountAdapter'
 # Select the correct user model
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'users:redirect'
-LOGIN_URL = 'account_login'
+LOGIN_URL = 'login/login'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
@@ -250,3 +254,4 @@ ADMIN_URL = r'^admin/'
 
 
 # Your common stuff: Below this line define 3rd party library settings
+

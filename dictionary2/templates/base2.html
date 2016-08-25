@@ -1,10 +1,12 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>{% block dictionary %}{% endblock %}</title>
 
@@ -13,6 +15,33 @@
     <link rel="stylesheet" href="{% static "css/style.css"%}">
     <link rel="stylesheet" href="{% static "css/detay.css" %}">
     <script src="https://use.fontawesome.com/f9ca6ec379.js"></script>
+
+    <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,10 +70,20 @@
     			<div class="col-lg-2"></div>
     			<div class="col-lg-2 pull-left">
                     {% if user.is_authenticated %}
-                        profil
+                        <li class="drop">
+	    					<button class="btn ucNokta dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						   	 ...
+						  	</button>
+						  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						    	<li><a data-toggle="tab" href="kanallar">Kanallar</a></li>
+						    	<li><a data-toggle="tab" href="ayarlar">Ayarlar</a></li>
+						    	<li role="separator" class="divider"></li>
+						    	<li><a data-toggle="tab" href="terk">Terk</a></li>
+						  	</ul>
+					  	</li>
                     {% else %}
-                        <a href="#">Giriş</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#">Kayıt Ol</a>
+                        <a href="/login/">Giriş</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    				    <a href="#">Kayıt Ol</a>
                     {% endif %}
     			</div>
     			<div class="col-lg-1"></div>
@@ -61,7 +100,7 @@
     					<li><a data-toggle="tab" href="#edebiyat">#edebiyat</a></li>
     					<li><a data-toggle="tab" href="#siyaset">#siyaset</a></li>
 	    				<li class="drop">
-	    					<button class="btn ucNokta dropdown-toggle" type="button" id="			dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" 				aria-expanded="true">
+	    					<button class="btn ucNokta dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 						   	 ...
 						  	</button>
 						  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -89,771 +128,43 @@
     </header>
 
     <div class="container-fluid">
-    	<div class="row">
-    		<div class="col-lg-1"></div>
-    		<div class="col-lg-2">
+    	<div class="row content">
+    		<div class="col-lg-3 ">
+                <div id="bugun" class="tab-pane fade in active">
+                    <h3><a href="#">Bugün</a></h3>
+                    <ul class="nav nav-tabs"></ul>
+                    <ul class="nav nav-pills nav-stacked"></ul>
+
+                    {%  for baslik in title %}
+                        {{ baslik }}
+                    {% endfor %}
+                     <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></p>
+                     <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></p>
+                     <p><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </a></p>
+                </div>
+            </div>
+    		<div class="col-lg-6">
     			<div class="tab-content">
-    				{%  block sidebar %}{% endblock sidebar %}
-    				<div id="populer" class="tab-pane fade">
-    					<h3>Popüler</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="badi" class="tab-pane fade">
-    					<h3>Badi</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">yazdıkları</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="caylaklar" class="tab-pane fade">
-    					<h3>Çaylaklar</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="spor" class="tab-pane fade">
-    					<h3>Spor</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="edebiyat" class="tab-pane fade">
-    					<h3>Edebiyat</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="siyaset" class="tab-pane fade">
-    					<h3>Siyaset</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="anket" class="tab-pane fade">
-    					<h3>Anket</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="bilim" class="tab-pane fade">
-    					<h3>Bilim</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="ekonomi" class="tab-pane fade">
-    					<h3>Ekonomi</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="havacilik" class="tab-pane fade">
-    					<h3>Havacılık</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="oyun" class="tab-pane fade">
-    					<h3>Oyun</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="sinema" class="tab-pane fade">
-    					<h3>Sinema</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="magazin" class="tab-pane fade">
-    					<h3>Magazin</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="motosiklet" class="tab-pane fade">
-    					<h3>Motosiklet</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    				<div id="basiboslar" class="tab-pane fade">
-    					<h3>Başıboşlar</h3>
-		    			<ul class="nav nav-tabs">
-		    				<li role="presentation" class="active"><a href="#">gundem</a></li>
-		    			</ul>
-		    			<ul class="nav nav-pills nav-stacked">
-		    				<li>
-		    				<a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor</a></li>
-		    				<li><a href="#">lorem ipsum dolor </a></li>
-		    				<li><a href="#">lorem ipsum dolor sit amet, consectetur</a></li>
-		    				<li><a href="#">lorem ipsum dolor sit consectetur</a></li>
-		    			</ul>
-    				</div>
-    			</div>
+                    <div id="bugun" class="tab-pane fade in active">
+                        <h3><a href="#">Gündem</a></h3>
+                        <ul class="nav nav-tabs"></ul>
+                        <ul class="nav nav-pills nav-stacked"></ul>
+                        {%  for baslik in basliklar %}
+                            <li><p>{{ baslik.title }}</p></li>
+                        {%  endfor %}
 
-    		</div>
-    		<div class="col-lg-8">
-    			<div class="baslik">
-    				{% block content %}{% endblock content %}
-					<hr>
-					<ul class="nav nav-pills altMenu">
-						<li><a href="#">iletişim</a></li>
-						<li><a href="#">kullanım koşulları</a></li>
-						<li><a href="#">sss</a></li>
-						<li><a href="#">istatistikler</a></li>
-						<li><a href="#">modlog</a></li>
-						<li><a href="#">sub-etha</a></li>
-						<li><a href="#">twitter</a></li>
-						<li><a href="#">facebook</a></li>
-						<li><a href="#">google+</a></li>
-					</ul>
+                        <hr>
+                    </div>
     			</div>
-
     		</div>
-    		<div class="col-lg-1"></div>
+    		<div class="col-lg-3">
+                <h3><a href="#">Başıboşlar :))</a></h3>
+            </div>
     	</div>
     </div>
-
+    <footer class="container-fluid text-center">
+      <p>Footer Text</p>
+    </footer>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
