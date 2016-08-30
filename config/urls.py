@@ -9,10 +9,11 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from django.contrib.auth import views
 from django.contrib.auth import views as auth_views
-
 from dictionary2.topics import urls as topics_api_urls
 
+
 urlpatterns = [
+
     url(r'^$', TemplateView.as_view(template_name='base2.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
@@ -24,10 +25,8 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
+
     url(r'^topics/', include(topics_api_urls, namespace='topics-general')),
-
-
-
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

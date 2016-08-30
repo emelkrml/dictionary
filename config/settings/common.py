@@ -56,6 +56,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -167,6 +170,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 SECRET_KEY = 'vb(db=vwznw!ma9rf%^&+f!@k5__7fn8g#+67u#@dxev%1&wp7'
 # See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs

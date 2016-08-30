@@ -17,19 +17,3 @@
                 </ul>
         </nav>
 {% endblock content %}
-<div class="col-lg-6">
-    {% block tab-content %}
-        {% if topics %}
-            {% for topic in topics %}
-                <h4>{{ topic.title }}</h4>
-                {% for entry in topic.entry_set.all %}
-                    <p>{{ entry.content }}</p>
-                {% endfor %}
-            {% endfor %}
-        {% else %}
-            <p class="lead">Paylaşım yok</p>
-        {% endif %}
-    {% endblock tab-content %}
-</div>
-
-

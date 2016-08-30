@@ -1,25 +1,67 @@
-from django.shortcuts import render
-from django.template import Context, loader
+# -*- coding: utf-8 -*-
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
+from django.db.models import Count
 from dictionary2.topics.models import Entry, Topic, Category, Favorite
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-def topicView(request, slug, id):
 
+def entry_view(request):
+    category = Category.objects.first()
+    topics = Topic.objects.all().prefetch_related('entry_set')[6:11]
+    populer = Topic.objects.annotate(entry_count=Count('entry')).order_by('-entry_count')
+    context = {
+        'topics': topics,
+        'category': category,
+        'populer': populer,
+    }
+    return render(request, 'topics/title.html', context)
+
+def today(request):
     try:
-        topics = Topic.objects.get(slug=slug)
+        today = Topic.topic_today.all()
         context = {
-            'topics': topics,
+            'today': today,
         }
-        total = Favorite.objects.filter(entry=id).count()
-        contact_list = Entry.objects.selected_related("topic").filtew(baslik_id=id)
-        paginator = Paginator(contact_list, 5)
     except Topic.DoesNotExist:
         context = {
-            'topics': None,
+            'today': None,
         }
 
+    return render(request, 'topics/kanallar/bugun.html', context)
+
+def populer(request):
+    try:
+        populer = Topic.objects.annotate(entry_count=Count('entry')).order_by('-entry_count')
+
+        context = {
+            'populer': populer,
+        }
+    except:
+        return render(request, 'base2.html')
+
+    return render(request, 'topics/kanallar/populer.html', context)
 
 
-    return render(request, 'topics/title.html', context)
+def by_category(request, category):
+
+    category = get_object_or_404(Category, pk=category)
+
+    topics = Topic.objects.filter(category=category).prefetch_related('entry_set')
+
+    return render(request, 'topics/kanallar/by_category.html')
+
+def basiboslar(request, category):
+    category = get_object_or_404(Category, pk=category)
+
+    topics = Topic.objects.filter(category=None).prefetch_related('entry_set')
+
+    return render(request, 'topics/kanallar/basiboslar.html')
+
+
+def favorite(request):
+    pass
+#http://www.tangowithdjango.com/book/chapters/ajax.html
+
+
+
 
