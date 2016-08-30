@@ -1,0 +1,12 @@
+{%  extends "base2.html" %}
+
+{% block nav-stacked %}
+    {% if topic %}
+        {% for t in topic %}
+            <h4>{{ t.title }}</h4>
+            <p>{{ t.content }}</p>
+        {% endfor %}
+    {% else %}
+        <p class="lead">Paylaşım yok</p>
+    {% endif %}
+{% endblock nav-stacked %}

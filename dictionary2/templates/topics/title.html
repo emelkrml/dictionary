@@ -1,14 +1,38 @@
 {% extends "base2.html" %}
 
+{% block content %}
+        <nav id="populer" class="tab-pane fade in active">
+            <h3>Popüler</h3>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">gündem</a></li>
+            </ul>
+            <ul class="nav nav-pills nav-stacked">
+                {% if populer %}
+                    {% for p in populer %}
+                        <h5><a href="#">{{ p.title }}</a></h5>
+                    {% endfor %}
+                {% else %}
+                    <p class="lead">Paylaşım yok</p>
+                {% endif %}
+            </ul>
+        </nav>
+{% endblock content %}
 {% block tab-content %}
-
     {% if topics %}
-        {% for t in topics %}
-            <h4>{{ t.title }}</h4>
-            <p>{{ t.content }}</p>
+        {% for topic in topics %}
+            <h4><a href="#">{{ topic.title }}</a></h4>
+            {% for entry in topic.entry_set.all %}
+                <p>{{ entry.content }}</p>
+                <footer class="text">
+                    <a href="#" id="glyphicon-up" class="fa glyphicon glyphicon-thumbs-up fa-2x social"></a>
+                    <a href="#" id="glyphicon-down" class="fa glyphicon glyphicon-thumbs-down social"></a>
+                    <a href="#" id="glyphicon-fav" class="fa glyphicon glyphicon-tint fa-2x social"></a>
+                    <a href="#" class="entry-date">{{ entry.created_at }}</a>
+                </footer>
+                <hr>
+            {% endfor %}
         {% endfor %}
     {% else %}
-        <p class="lead">Baslık yok</p>
+        <p class="lead">Paylaşım yok</p>
     {% endif %}
-
 {% endblock tab-content %}
