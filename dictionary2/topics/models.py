@@ -11,6 +11,8 @@ from dictionary2.users.models import User
 from .signals import check_junior
 from model_utils.managers import QueryManager
 
+from django.contrib.contenttypes.models import ContentType
+
 
 
 class Category(models.Model):

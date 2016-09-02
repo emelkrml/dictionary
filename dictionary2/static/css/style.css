@@ -1,5 +1,5 @@
 header{
-	border-top: 3px solid lightgreen;
+	border-top: 3px solid green;
 	padding-bottom: 15px;
 	padding-top:10px;
 	border-bottom: 1px solid lightgrey;
@@ -51,31 +51,31 @@ a:hover{
 .ucNokta:focus{
 	border:none;
 }
-
+/*
 .nav.nav-pills.nav-stacked{
 	min-height: auto;
 	max-height: 890px;
 	position: static;
 	overflow-y:auto;
-	overflow-x: none; 
+	overflow-x: none;
 }
-
+*/
 .baslik{
 	margin-top: 50px;
 	max-height: 890px;
 	overflow-y: auto;
-	width: 80%; 
+	width: 80%;
 }
 
-.baslik > h3{	
+.baslik > h3{
 	margin-top: 100px;
 }
 body{
 	height: 890px;
 }
 
-.baslik::-webkit-scrollbar { 
-    display: none; 
+.baslik::-webkit-scrollbar {
+    display: none;
 }
 
 .altMenu > li > a{

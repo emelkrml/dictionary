@@ -6,7 +6,7 @@ def check_junior(sender, instance, created, **kwargs):
 
     if created and instance.user.junior:
         total_entry = sender.objects.filter(user=instance.user).count()
-        if total_entry >= 10:
+        if total_entry >= 5:
             instance.user.junior = False
             instance.user.save()
 

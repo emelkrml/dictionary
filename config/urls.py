@@ -7,9 +7,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from django.contrib.auth import views
-from django.contrib.auth import views as auth_views
 from dictionary2.topics import urls as topics_api_urls
+from dictionary2.profilepage import urls as profilepage_api_urls
 
 
 urlpatterns = [
@@ -27,6 +26,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
 
     url(r'^topics/', include(topics_api_urls, namespace='topics-general')),
+    url(r'^profile/', include(profilepage_api_urls, namespace='profilepage-general')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

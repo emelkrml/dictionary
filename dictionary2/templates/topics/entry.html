@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <nav id="populer" class="tab-pane fade in active">
+        <h3>Popüler</h3>
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">gündem</a></li>
+        </ul>
+        <ul class="nav nav-pills nav-stacked">
+            {% if populer %}
+                {% for p in populer %}
+                    <h5><a href="{% url 'topics-general:entry' %}">{{ p.title }}</a></h5>
+                {% endfor %}
+            {% else %}
+                <p class="lead">Paylaşım yok</p>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock content %}
+
+{% block tab-content %}
+{% if topics %}
+    {% for topic in topics %}
+        <h4><a href="{% url 'topics-general:entry' %}">{{ topic.title }}</a></h4>
+        {% for entry in topic.entry_set.all %}
+            <p>{{ entry.content }}</p>
+            <footer class="text">
+                <a href="#"><i class="fa fa-angle-up fa-2x"></i></a>
+                <a href="#"><i class="fa fa-angle-down fa-2x"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% if request.user.is_authenticated %}<a href="#"><i id="fav" data-entryid="{{ entry.id }}" href="#" class="fa fa-tint fa-1x"></i></a>
+                {% endif %}
+                <a href="#" class="pull-right">{{ entry.created_at }}</a>
+            </footer>
+            <hr>
+        {% endfor %}
+    {% endfor %}
+{% else %}
+    <p class="lead">Paylaşım yok</p>
+{% endif %}
+
+{%  endblock tab-content%}
