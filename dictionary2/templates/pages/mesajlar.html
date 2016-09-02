@@ -1,0 +1,39 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+    {% if today %}
+        {% for t in today %}
+            <p><a href="#">{{ t.title }}</a></p>
+        {% endfor %}
+    {% else %}
+        <p class="lead">Paylaşım yok</p>
+    {% endif %}
+
+{% endblock content %}
+
+{% block tab-content %}
+
+    <h4>mesajlar</h4>
+    <ul class="nav nav-tabs mesajlarTab" role="tablist" id="myTabs">
+        <li role="presentation" class="avtive"><a data-toggle="tab" role="tab" href="#gelenkutusu">gelen kutusu</a></li>
+        <li role="presentation"><a data-toggle="tab" role="tab" href="#arsiv">arşiv</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" id="gelenkutusu">
+            <ul class="list-unstyled">
+                <li>
+                    <br /><p>mesajınız yok</p>
+                </li>
+            </ul>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="arsiv">
+            <ul class="list-unstyled">
+                <li>
+                    <br /><p>arşivlenmiş mesajınız yok</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock tab-content %}

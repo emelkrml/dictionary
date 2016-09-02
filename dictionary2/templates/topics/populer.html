@@ -1,4 +1,4 @@
-{%  extends "base2.html" %}
+{% extends "base2.html" %}
 
 {% block content %}
         <nav id="populer" class="tab-pane fade in active">
@@ -9,7 +9,7 @@
                 <ul class="nav nav-pills nav-stacked">
                     {% if populer %}
                         {% for p in populer %}
-                            <h5><a href="#">{{ p.title }}</a></h5>
+                            <h5><a href="{% url 'topics-general:entry' %}">{{ p.title }}</a></h5>
                         {% endfor %}
                     {% else %}
                         <p class="lead">Paylaşım yok</p>

@@ -1,9 +1,9 @@
 {%  extends "base2.html" %}
 
 {% block content %}
-    {% if spor_object %}
-        {% for s in spor_object %}
-            <h4><a>{{ s.title }}</a></h4>
+    {% if topics %}
+        {% for t in topics %}
+            <p><a>{{ t.title }}</a></p>
         {% endfor %}
     {% else %}
         <p class="lead">Paylaşım yok</p>

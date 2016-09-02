@@ -1,13 +1,11 @@
 {%  extends "base2.html" %}
 
 {% block content %}
-
-    {% if today %}
-        {% for t in today %}
-            <h4><a href="#">{{ t.title }}</a></h4>
+    {% if caylak %}
+        {% for c in caylak %}
+            <p><a href="{% url 'topics-general:entry' %}">{{ c.title }}</a></p>
         {% endfor %}
     {% else %}
         <p class="lead">Paylaşım yok</p>
     {% endif %}
-
 {% endblock content %}

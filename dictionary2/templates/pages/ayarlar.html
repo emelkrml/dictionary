@@ -1,0 +1,166 @@
+{% extends "base2.html" %}
+
+{% block content %}
+        <nav id="populer" class="tab-pane fade in active">
+            <h3>Popüler</h3>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">gündem</a></li>
+            </ul>
+            <ul class="nav nav-pills nav-stacked">
+                {% if populer %}
+                    {% for p in populer %}
+                        <h5><a href="#">{{ p.title }}</a></h5>
+                    {% endfor %}
+                {% else %}
+                    <p class="lead">Paylaşım yok</p>
+                {% endif %}
+            </ul>
+        </nav>
+{% endblock content %}
+
+{% block tab-content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 left-side">
+        </div>
+        <div class="col-lg-8">
+            <div class="baslik">
+                <h3>ayarlar</h3>
+                <ul class="nav nav-tabs ayarlarTab" role="tablist" id="myTabs">
+                    <li role="presentation" class="avtive"><a data-toggle="tab" role="tab" href="#tercihler">tercihler</a></li>
+                    <li role="presentation"><a data-toggle="tab" role="tab" href="#sifre">şifre</a></li>
+                    <li role="presentation"><a data-toggle="tab" role="tab" href="#email">email</a></li>
+                    <li role="presentation"><a data-toggle="tab" role="tab" href="#kisisel">kişisel</a></li>
+                    <li role="presentation"><a data-toggle="tab" role="tab" href="#kapat">hesabı kapat</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="tercihler">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="ayarlarMesajBaslik">mesaj</h4>
+                                    <label class="ayarlarMesaj">
+                                        <input type="checkbox" value="">Mesajla falan işim olmaz
+                                    </label>
+                                    <h4 class="ayarlarMesajBaslik">gösterim</h4>
+                                    <p>sayfa başına entry</p>
+                                    <div class="btn-group sbEntry" role="group" aria-label="...">
+                                        <button type="button" class="btn btn-default">25</button>
+                                        <button type="button" class="btn btn-default">50</button>
+                                        <button type="button" class="btn btn-default">75</button>
+                                        <button type="button" class="btn btn-default">100</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    <div role="tabpanel" class="tab-pane" id="sifre">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="ayarlarSifreBaslik">şifre değiştir</h4>
+                                </li>
+                                <li>
+                                    <p><i class="glyphicon glyphicon-success-sign"></i>hesap güvenliğiniz açısından şifrenizin diğer sitelerde kullandığınız şifrelerden farklı olmasını tavsiye ederiz.</p>
+                                </li>
+                                <li>
+                                    <label>şimdiki şifre:</label><input type="text" class="form-control" style="width:150px;"><br>
+                                </li>
+                                <li>
+                                    <label>şifre:</label><input type="text" class="form-control" style="width:150px;"><br>
+                                </li>
+                                <li>
+                                    <label>şifre(tekrar):</label><input type="text" class="form-control" style="width:150px;"><br>
+                                </li>
+                                <li>
+                                    <button class="btn btn-success">güncelle</button>
+                                </li>
+                            </ul>
+                        </div>
+                    <div role="tabpanel" class="tab-pane" id="email">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="ayarlarEmailBaslik">email</h4>
+                                </li>
+                                <li>
+                                    <label>şimdiki email:</label><input type="text" class="form-control" style="width:250px;"><br>
+                                </li>
+                                <li>
+                                    <label>şifre:</label><input type="text" class="form-control" style="width:250px;"><br>
+                                </li>
+                                <li>
+                                    <label>yeni email:</label><input type="text" class="form-control" style="width:250px;"><br>
+                                </li>
+                                <li>
+                                    <label>yeni email(tekrar):</label><input type="text" class="form-control" style="width:250px;"><br>
+                                </li>
+                                <li>
+                                    <button class="btn btn-success">email adersimi değiştir</button>
+                                </li>
+                            </ul>
+                        </div>
+                    <div role="tabpanel" class="tab-pane" id="kisisel">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="ayarlarKisiselBaslik">kişisel</h4>
+                                </li>
+                                <li>
+                                    <p>doğum tarihi</p>
+                                </li>
+                                <li>
+                                    <select class="dogumTarihiGun" name="gun" id="gun">
+                                        <option value="">1</option>
+                                    </select>
+                                    <select class="dogumTarihiAy" name="ay" id="ay">
+                                        <option value="">Ocak</option>
+                                    </select>
+                                    <select class="dogumTarihiYil" name="yil" id="yil">
+                                        <option value="">2004</option>
+                                    </select>
+                                </li><br>
+                                <li>
+                                    <p>cinsiyetiniz</p>
+                                </li>
+                                <li>
+                                    <div class="btn-group cinsiyet" role="group" aria-label="...">
+                                        <button type="button" class="btn btn-default">kadın</button>
+                                        <button type="button" class="btn btn-default">erkek</button>
+                                        <button type="button" class="btn btn-default">başka</button>
+                                        <button type="button" class="btn btn-default">boşver</button>
+                                    </div>
+                                </li><br>
+                                <li>
+                                    <button class="btn btn-success">aynen böyle</button>
+                                </li>
+                                <li class="kullaniciSozlesmesi"><a href="">kullanıcı sözleşmesi</a></li>
+                            </ul>
+                        </div>
+                    <div role="tabpanel" class="tab-pane" id="kapat">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="ayarlarKapatBaslik">hesabı kapat</h4>
+                                </li>
+                                <li>
+                                    <p>kullanıcı hesabınızı kapattığınız zaman başka kullanıcılar size mesaj atamayacaklardır.</p>
+                                </li>
+                                <li>
+                                    <p>tekrar giriş yaparak hesabınızı yeniden aktif hale getirebilirsiniz. lakin bu en erken hesabınızı kapattığınız tarihten itibaren 24 saat sonra yapılabilmektedir, bunu da hatırlatmak isteriz.</p>
+                                </li>
+                                <li>
+                                    <label>şifre:</label><input type="text" class="form-control" style="width:150px;"><br>
+                                </li>
+                                <li>
+                                    <label class="ayarlarKapat">
+                                        <input type="checkbox" value=""> yokluğumda entry'lerimi gizle
+                                    </label>
+                                </li><br>
+                                <li>
+                                    <button class="btn btn-success">
+                                        elveda ay, elveda feza
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock tab-content %}
