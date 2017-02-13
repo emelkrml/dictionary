@@ -7,14 +7,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from dictionary2.topics import urls as topics_api_urls
-from dictionary2.profilepage import urls as profilepage_api_urls
+from dictionary2.topics.views import home
+from dictionary2.topics import urls as topics_urls
+from dictionary2.profilepage import urls as profilepage_urls
 
 
 urlpatterns = [
 
-    url(r'^$', TemplateView.as_view(template_name='base2.html'), name='home'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    # Anasayfa
+    # url(r'^$', TemplateView.as_view(template_name='base/home.html'), name='home'),
+    url(r'^$', home, name='home'),
+
+    # url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, include(admin.site.urls)),
@@ -25,8 +29,8 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
 
-    url(r'^topics/', include(topics_api_urls, namespace='topics-general')),
-    url(r'^profile/', include(profilepage_api_urls, namespace='profilepage-general')),
+    url(r'^topics/', include(topics_urls, namespace='topics')),
+    url(r'^profile/', include(profilepage_urls, namespace='profilepage')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

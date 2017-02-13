@@ -14,14 +14,11 @@ from model_utils.managers import QueryManager
 from django.contrib.contenttypes.models import ContentType
 
 
-
 class Category(models.Model):
     title = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return "#{title}".format(title=self.title)
-
-        # return self.title
 
     """
     class Meta:
@@ -66,7 +63,7 @@ class Topic(models.Model):
     """
 
     class Meta:
-        verbose_name = _("Title")
+        verbose_name = _("Topic")
         ordering = ('created_at',)
 
 

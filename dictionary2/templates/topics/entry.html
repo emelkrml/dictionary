@@ -1,4 +1,4 @@
-{% extends "base2.html" %}
+{% extends "base/home.html" %}
 {% load staticfiles %}
 
 {% block content %}
@@ -10,7 +10,7 @@
         <ul class="nav nav-pills nav-stacked">
             {% if populer %}
                 {% for p in populer %}
-                    <h5><a href="{% url 'topics-general:entry' %}">{{ p.title }}</a></h5>
+                    <h5><a href="{% url 'topics:entry' %}">{{ p.title }}</a></h5>
                 {% endfor %}
             {% else %}
                 <p class="lead">Paylaşım yok</p>
