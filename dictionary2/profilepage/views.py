@@ -9,7 +9,7 @@ def profile_page(request):
             'populer': populer,
         }
     except:
-        return render(request, 'base2.html')
+        return render(request, 'base/home.html')
 
     return render(request, 'pages/profil.html')
 
@@ -21,7 +21,7 @@ def ayarlar(request):
             'populer': populer,
         }
     except:
-        return render(request, 'base2.html')
+        return render(request, 'base/home.html')
 
     return render(request, 'pages/ayarlar.html', context)
 
