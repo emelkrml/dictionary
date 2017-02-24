@@ -5,12 +5,18 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+
     url(r'^ajax/get-today/$', views.get_today, name='get_today'),
     url(r'^ajax/get-popular/$', views.get_popular, name='get_popular'),
     url(r'^ajax/get-junior_user/$', views.get_junior_user, name='get_junior_user'),
     url(r'^ajax/get-stray/$', views.get_stray, name='get_stray'),
     url(r'^ajax/get-category/$', views.by_category, name='by_category'),
 
+
+    #   --- footer ---  #
+    url(r'^iletisim/$', views.contact, name='contact'),
+    url(r'^kullanim_kosullari/$', views.terms_use, name='terms_use'),
+    url(r'^sss/$', views.sss, name='sss'),
 
     # url(r'^today/$', views.today, name='today'),
     # url(r'^populer/$', views.populer, name='populer'),

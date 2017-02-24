@@ -1,0 +1,246 @@
+{% load staticfiles i18n %}
+{% load  topic_tags %}
+
+<!DOCTYPE html>
+  <html>
+    <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="{% static "materialize/css/materialize.css" %}"/>
+      <link type="text/css" rel="stylesheet" href="{% static "materialize/css/main.css" %}"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Anasayfa</title>
+    </head>
+
+    <body ng-app="dictionaryApp" ng-controller="dictionaryCtrl">
+    <main>
+        <div class="row">
+          <div class="col s12">
+            <ul id="navbar-menu" class="dropdown-content">
+              {% get_categories as category_list %}
+              {% for category in category_list %}
+                  <li><a ng-click="getCategory({{ category.id }})" href="">{{ category }}</a></li>
+              {% endfor %}
+              <li class="divider"></li>
+              <li><a href="" ng-click="getStray()">{% trans "başıboşlar" %}</a></li>
+            </ul>
+            <ul id="user-menu" class="dropdown-content">
+              <li><a href="{% url 'profilepage:ayarlar' %}">#ayarlar</a></li>
+              <li><a href="#">#kanallar</a></li>
+              <li><a href="#">#gece görüşünü aç</a></li>
+              <li class="divider"></li>
+              <li><a href="{% url 'account_logout' %}">#terk</a></li>
+            </ul>
+            <nav class="nav-extended">
+              <div class="nav-wrapper">
+                <a href="{% url 'home' %}" class="brand-logo">Logo</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-navicon">
+                </i></a>
+                {% if request.user.is_authenticated %}
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="{% url 'profilepage:profile' %}"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;ben</a></li>
+                  <li><a href="{% url 'profilepage:messages' %}"><i class="fa fa-envelope"></i>&nbsp;&nbsp;mesaj</a></li>
+                  <li><a href="{% url 'profilepage:events' %}"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;olay</a></li>
+                  <li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                  <li><a href="{% url 'profilepage:profile' %}"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;ben</a></li>
+                  <li><a href="{% url 'profilepage:messages' %}"><i class="fa fa-envelope"></i>&nbsp;&nbsp;mesaj</a></li>
+                  <li><a href="{% url 'profilepage:events' %}"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;olay</a></li>
+                  <li><a class="dropdown-btn btn" data-beloworigin="true" href="#user-menu" data-activates="user-menu"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a></li>
+                </ul>
+                {% else %}
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="{% url 'account_signup' %}">Kayıt Ol</a></li>
+                  <li><a href="{% url 'account_login' %}">Giriş</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                  <li><a href="{% url 'account_signup' %}">Kayıt Ol</a></li>
+                  <li><a href="{% url 'account_login' %}">Giriş</a></li>
+                </ul>
+                  {% endif %}
+              </div>
+              <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                  <li class="tab"><a href="" ng-click="getToday()">{% trans "bugün" %}</a></li>
+                  <li class="tab"><a href="" ng-click="getPopular()">{% trans "popüler" %}</a></li>
+                  {% if request.user.is_authenticated %}
+                      <li class="tab"><a href="" ng-click="getJuniorUser()">{% trans "çaylaklar" %}</a></li>
+                  {% endif %}
+                  {% get_categories as category_list %}
+                  {% for category in category_list|slice:'5' %}
+                      <li class="tab"><a ng-click="getCategory({{ category.id }})" href="">{{ category }}</a></li>
+                  {% endfor %}
+                  <li><a class="dropdown-button" data-beloworigin="true" href="#" data-activates="navbar-menu"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </nav>
+            <div class="col s3 scroll">
+              <div class="row">
+              <blockquote class="flow-text">başlıklar</blockquote>
+                <ul id=title-left>
+                    <li ng-repeat="topic in topics"><p><a href="">{? topic.title ?}</a></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col s9">
+              <div id="content-description" class="row">
+                  {% block content %}{% endblock content %}
+              </div>
+              <div class="row">
+                  <footer id="site-footer">
+                    <div>
+                      <div class="row">
+                        <nav>
+                          <div class="nav-wrapper">
+                            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                              <li><a href="{% url 'topics:contact' %}">iletişim</a></li>
+                              <li><a href="{% url 'topics:terms_use' %}">kullanım koşulları</a></li>
+                              <li><a href="{% url 'topics:sss' %}">sss</a></li>
+                              <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
+                              <li><a href=""><i class="fa fa-twitter-square"></i></a></li>
+                            </ul>
+                          </div>
+                        </nav>
+                      </div>
+                    </div>
+                  </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+
+
+    <script type="text/javascript" src="{% static "materialize/js/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "materialize/js/materialize.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "materialize/js/main.js" %}"></script>
+    <script type="text/javascript" src="{% static "materialize/js/angular/angular.min.js" %}"></script>
+
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+{#    ----------- Angularjs Tanımlanması Start ----------     #}
+    var app = angular.module("dictionaryApp", []);
+
+    app.factory("interceptors", [
+        function() {
+          return {
+            'request': function(request) {
+              if (request.beforeSend)
+                request.beforeSend();
+              return request;
+            },
+            'response': function(response) {
+              if (response.config.complete)
+                response.config.complete(response);
+                return response;
+            }
+          };
+    }]);
+
+    app.config(['$interpolateProvider','$httpProvider', function($interpolateProvider, $httpProvider){
+        $interpolateProvider.startSymbol('{?');
+        $interpolateProvider.endSymbol('?}');
+
+        $httpProvider.interceptors.push('interceptors');
+
+        var common = $httpProvider.defaults.headers.common;
+        common['X-CSRFToken'] = '{{ csrf_token|escapejs }}';
+      }]);
+{#    ----------- Angularjs Tanımlanması End ----------     #}
+
+    app.factory('dictionaryFctry', function ($http) {
+        return {
+            getToday: function () {
+                return $http({
+                    method: 'GET',
+                    url: '{% url "topics:get_today" %}'
+                })
+            },
+            getPopular: function () {
+                return $http({
+                    method: 'GET',
+                    url: '{% url "topics:get_popular" %}'
+                })
+            },
+            getJuniorUser: function () {
+                return $http({
+                    method: 'GET',
+                    url: '{% url "topics:get_junior_user" %}'
+                })
+            },
+            getStray: function () {
+                return $http({
+                    method: 'GET',
+                    url: '{% url "topics:get_stray" %}'
+                })
+            },
+            getCategory: function (category_id) {
+                var param = $.param({
+                       category_id:category_id
+                    });
+                return $http({
+                        method:'POST',
+                        url:"{% url 'topics:by_category' %}",
+                        data:param,
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    });
+            }
+        }
+    });
+    app.controller('dictionaryCtrl', function ($scope, dictionaryFctry) {
+
+        $scope.category_id = null;
+        $scope.getCategory = function(category_id){
+            $scope.category_id = category_id;
+            dictionaryFctry.getCategory(category_id).then(function (data) {
+                $scope.topics = data.data;
+            });
+        };
+        $scope.getToday = function () {
+            dictionaryFctry.getToday().then(function (data) {
+                    $scope.topics = data.data;
+            });
+        };
+        $scope.getPopular = function () {
+            dictionaryFctry.getPopular().then(function (data) {
+                    $scope.topics = data.data;
+            });
+        };
+        $scope.getJuniorUser = function () {
+            dictionaryFctry.getJuniorUser().then(function (data) {
+                $scope.topics = data.data;
+{#                console.log($scope.topics)#}
+            });
+        };
+        $scope.getStray = function () {
+            dictionaryFctry.getStray().then(function (data) {
+                if (data.success) {
+                    $scope.topics = data.topics;
+                    console.log(topics)
+                } else if (data.error) {
+                    alert('Hata !!!');
+                }
+            });
+        }
+    });
+</script>
+
+    <script type="text/javascript">
+       $(document).ready(function(){
+          $('.dropdown-button').dropdown('open');
+          $('ul.tabs').tabs();
+        });
+
+      </script>
+    </body>
+  </html>

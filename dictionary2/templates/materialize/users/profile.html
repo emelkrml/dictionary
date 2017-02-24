@@ -1,0 +1,76 @@
+{% extends "materialize/base/home.html" %}
+{% load staticfiles i18n %}
+
+{% block content %}
+    <div class="col s9">
+        <div id="content-description" class="row">
+            <div class="content">
+                <h5>{{ request.user.username }}</h5>
+                <p><a href="#">badilere ekle</a></p><br>
+                <div class="row">
+                    <div class="col s4 end-entry">
+                      <ul class="profile-title"><a href="">Son entry' leri</a>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                      </ul>
+                    </div>
+                    <div class="col s4 end-entry">
+                      <ul class="profile-title"><a href="">Görünmeyen entry' leri (23)</a>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4 end-entry">
+                      <ul class="profile-title"><a href="">Favori entry' leri (3)</a>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                      </ul>
+                    </div>
+                    <div class="col s4 end-entry">
+                      <ul class="profile-title"><a href="">En çok favorilenen entry' leri (9)</a>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                        <li><a href="">lorem ipsum: when,</a></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4 end-entry">
+                      <ul class="profile-title"><a href="">Katkıda bulunduğu kanallar</a>
+                        <li><a href="">#spor</a></li>
+                        <li><a href="">#magazin</a></li>
+                        <li><a href="">#tarih</a></li>
+                        <li><a href="">#ekonomi</a></li>
+                        <li><a href="">#müzik</a></li>
+                        <li><a href="">#sinema</a></li>
+                        <li><a href="">#siyaset</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock content %}
+
+

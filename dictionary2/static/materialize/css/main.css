@@ -1,0 +1,41 @@
+#nav-mobile li i {
+	color: #d81b60;
+}
+#title-left li p a {
+	color: #616161;
+}
+div .scroll {
+    overflow: scroll;
+    overflow-x: auto !important;
+}
+#content-description p a {
+	color: #424242;
+}
+#act-icon span a i {
+	color: #d81b60;
+}
+.date-footer a {
+	color: #9e9e9e;
+}
+.end-entry ul li a {
+	color: #9e9e9e;
+}
+.end-entry ul {
+	color: black;
+}
+.profile-title a {
+	color: #d81b60;
+}
+#site-footer {
+    border-top: 1px solid #b0bec5;
+    padding: 10px 0;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+#site-footer nav {
+    background-color: #e0e0e0;
+    color: #d81b60;
+}
+#site-footer nav li a {
+    color: #9e9e9e;
+}
