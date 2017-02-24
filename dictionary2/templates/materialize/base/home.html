@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Anasayfa</title>
+      <title>{% trans "Carpe Diem" %}</title>
     </head>
 
     <body ng-app="dictionaryApp" ng-controller="dictionaryCtrl">
@@ -28,38 +28,38 @@
               <li><a href="" ng-click="getStray()">{% trans "başıboşlar" %}</a></li>
             </ul>
             <ul id="user-menu" class="dropdown-content">
-              <li><a href="{% url 'profilepage:ayarlar' %}">#ayarlar</a></li>
-              <li><a href="#">#kanallar</a></li>
-              <li><a href="#">#gece görüşünü aç</a></li>
+              <li><a href="{% url 'profilepage:ayarlar' %}">{% trans "#ayarlar" %}</a></li>
+              <li><a href="#">{% trans "#kanallar" %}</a></li>
+              <li><a href="#">{% trans "#gece görüşü aç" %}</a></li>
               <li class="divider"></li>
-              <li><a href="{% url 'account_logout' %}">#terk</a></li>
+              <li><a href="{% url 'account_logout' %}">{% trans "#terk" %}</a></li>
             </ul>
             <nav class="nav-extended">
               <div class="nav-wrapper">
-                <a href="{% url 'home' %}" class="brand-logo">Logo</a>
+                <a href="{% url 'home' %}" class="brand-logo">{% trans "Carpe Diem" %}</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-navicon">
                 </i></a>
                 {% if request.user.is_authenticated %}
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="{% url 'profilepage:profile' %}"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;ben</a></li>
-                  <li><a href="{% url 'profilepage:messages' %}"><i class="fa fa-envelope"></i>&nbsp;&nbsp;mesaj</a></li>
-                  <li><a href="{% url 'profilepage:events' %}"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;olay</a></li>
+                  <li><a href="{% url 'profilepage:profile' %}"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;{% trans "ben" %}</a></li>
+                  <li><a href="{% url 'profilepage:messages' %}"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{% trans "mesaj" %}</a></li>
+                  <li><a href="{% url 'profilepage:events' %}"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{% trans "olay" %}</a></li>
                   <li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                  <li><a href="{% url 'profilepage:profile' %}"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;ben</a></li>
-                  <li><a href="{% url 'profilepage:messages' %}"><i class="fa fa-envelope"></i>&nbsp;&nbsp;mesaj</a></li>
-                  <li><a href="{% url 'profilepage:events' %}"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;olay</a></li>
+                  <li><a href="{% url 'profilepage:profile' %}"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;{% trans "ben" %}</a></li>
+                  <li><a href="{% url 'profilepage:messages' %}"><i class="fa fa-envelope"></i>&nbsp;&nbsp;{% trans "mesaj" %}</a></li>
+                  <li><a href="{% url 'profilepage:events' %}"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;{% trans "olay" %}olay</a></li>
                   <li><a class="dropdown-btn btn" data-beloworigin="true" href="#user-menu" data-activates="user-menu"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a></li>
                 </ul>
                 {% else %}
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="{% url 'account_signup' %}">Kayıt Ol</a></li>
-                  <li><a href="{% url 'account_login' %}">Giriş</a></li>
+                  <li><a href="{% url 'account_signup' %}">{% trans "Kayıt Ol" %}</a></li>
+                  <li><a href="{% url 'account_login' %}">{% trans "Giriş" %}</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                  <li><a href="{% url 'account_signup' %}">Kayıt Ol</a></li>
-                  <li><a href="{% url 'account_login' %}">Giriş</a></li>
+                  <li><a href="{% url 'account_signup' %}">{% trans "Kayıt Ol" %}</a></li>
+                  <li><a href="{% url 'account_login' %}">{% trans "Giriş" %}</a></li>
                 </ul>
                   {% endif %}
               </div>
@@ -80,7 +80,7 @@
             </nav>
             <div class="col s3 scroll">
               <div class="row">
-              <blockquote class="flow-text">başlıklar</blockquote>
+              <blockquote class="flow-text">{% trans "başlıklar" %}</blockquote>
                 <ul id=title-left>
                     <li ng-repeat="topic in topics"><p><a href="">{? topic.title ?}</a></p></li>
                 </ul>
@@ -97,9 +97,9 @@
                         <nav>
                           <div class="nav-wrapper">
                             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                              <li><a href="{% url 'topics:contact' %}">iletişim</a></li>
-                              <li><a href="{% url 'topics:terms_use' %}">kullanım koşulları</a></li>
-                              <li><a href="{% url 'topics:sss' %}">sss</a></li>
+                              <li><a href="{% url 'topics:contact' %}">{% trans "iletişim" %}</a></li>
+                              <li><a href="{% url 'topics:terms_use' %}">{% trans "kullanım koşulları" %}</a></li>
+                              <li><a href="{% url 'topics:sss' %}">{% trans "sss" %}</a></li>
                               <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
                               <li><a href=""><i class="fa fa-twitter-square"></i></a></li>
                             </ul>
@@ -235,12 +235,13 @@
     });
 </script>
 
-    <script type="text/javascript">
-       $(document).ready(function(){
-          $('.dropdown-button').dropdown('open');
-          $('ul.tabs').tabs();
-        });
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.dropdown-button').dropdown('open');
+        $('ul.tabs').tabs();
+    });
 
-      </script>
-    </body>
-  </html>
+</script>
+
+</body>
+</html>
