@@ -28,7 +28,7 @@ def home(request):
     popular = Topic.objects.all().annotate(entry_count=Count('entry')).order_by('-entry_count')
     context = {"popular": popular}
 
-    return render(request, 'base/home.html', context)
+    return render(request, 'materialize/base/home.html', context)
 
 
 def get_today(request):
@@ -69,6 +69,19 @@ def by_category(request):
     topics = Topic.objects.filter(category__id=category_id).values('id', 'title').prefetch_related('-entry_set')
 
     return HttpResponse(json.dumps(list(topics)), content_type="application/json")
+
+
+def contact(request):
+    return render(request, 'materialize/footer/contact.html')
+
+
+def terms_use(request):
+    return render(request, 'materialize/footer/terms_use.html')
+
+
+def sss(request):
+    return render(request, 'materialize/footer/sss.html')
+
 
 
 

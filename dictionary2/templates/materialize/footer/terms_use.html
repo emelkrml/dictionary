@@ -1,0 +1,65 @@
+{% extends "materialize/base/home.html" %}
+{% load staticfiles i18n %}
+
+{% block content %}
+    <div class="col s9">
+        <div id="content-description" class="row">
+            <div class="content"><br><br>
+                <h5><a class="pink-text text-darken-1">Kullanım koşulları</a></h5><br>
+                <span> -- 18+ --</span>
+                <p>lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                </p>
+                <span> -- hukuka aykırı içerik ve şikayet --</span>
+                <p>lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                </p>
+                <span> -- kullanım --</span>
+                <p>lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                </p>
+                <span> -- içerik --</span>
+                <p>lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it lorem ipsum: when, and when not to use it
+                </p>
+                <footer id="act-icon">
+                    <div class="row">
+                      <span><a href=""><i class="fa fa-facebook-square"></i></a></span>&nbsp;
+                      <span><a href=""><i class="fa fa-twitter"></i></a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span><a href=""><i class="fa fa-thumbs-o-up"></i></a></span>&nbsp;
+                      <span><a href=""><i class="fa fa-thumbs-o-down"></i></a></span>&nbsp;&nbsp;&nbsp;
+                      {% if request.user.is_authenticated %}
+                        <span class="date-footer"><a href=""><i class="fa fa-tint"></i><span class="blue-grey-text text-lighten-2">  19</span></a></span>&nbsp;&nbsp;
+                      {% endif %}
+                      <span><a class="dropdown-button pull-right" data-beloworigin="true" href="#!" data-activates="iletisim"><i class="fa fa-ellipsis-h"></i></a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="date-footer pull-right"><a href="">03.03.2016 &nbsp;&nbsp;</a></span>
+                      <span class="date-footer pull-right"><a href="">user &nbsp;&nbsp;</a></span>
+                    </div>
+                </footer><br>
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="row">
+                <div class="col s12">
+                    <div class="card grey lighten-1">
+                      <div class="row">
+                        <form class="col s12">
+                          <div class="row">
+                            <div class="input-field col s9">
+                              <i class="fa fa-edit pink-text text-darken-1 prefix"></i>
+                              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                              <label for="icon_prefix2">lorem ipsum</label>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="card-action">
+                        <a href="#">kenarda dursun</a>
+                        <a href="#">Yolla</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
