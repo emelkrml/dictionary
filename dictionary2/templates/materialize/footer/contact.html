@@ -5,47 +5,47 @@
     <div class="col s9">
         <div id="content-description" class="row">
             <div class="content">
-                <h5>İletişim</h5>
-                <p>dikkat edilecek hususlar</p>
-                <p><a href="#">lorem ipsum is a tool that can be useful, used intentionally it may help solve some problems. if you go about content strategy the wrong way, fix that problem.</a></p>
+                <h5>{% trans "İletişim" %}</h5>
+                <p>{% trans "dikkat edilecek hususlar" %}</p>
+                <p><a href="#">{% trans "lorem ipsum is a tool that can be useful, used intentionally it may help solve some problems. if you go about content strategy the wrong way, fix that problem." %}</a></p>
                 <div class="card">
                     <fieldset>
-                        <legend>irtibat formu</legend><br>
+                        <legend>{% trans "irtibat formu" %}</legend><br>
                         <div class="row">
-                          <label for="Email">e-mail adresiniz</label>
-                          <input data-val="true" data-val-required="e-mail girmeniz gerekmektedir" id="Email" name="Email" type="email" value="">
+                          <label for="Email">{% trans "e-mail adresiniz" %}</label>
+                          <input data-val="true" data-val-required="{% trans "e-mail girmeniz gerekmektedir" %}" id="Email" name="Email" type="email" value="">
                           <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
                         </div>
                         <div class="row">
-                          <label>kategori</label>
+                          <label>{% trans "kategori" %}</label>
                           <p>
                             <input class="with-gap" name="icerik" type="radio" id="icerik" />
-                            <label for="icerik">ekşi sözlük'te yayınlanan içerik</label>
+                            <label for="icerik">{% trans "ekşi sözlük'te yayınlanan içerik" %}</label>
                           </p>
                           <p>
                             <input class="with-gap" name="konu" type="radio" id="konu" />
-                            <label for="konu">ekşi sözlük'le ilgili diğer konular</label>
+                            <label for="konu">{% trans "ekşi sözlük'le ilgili diğer konular" %}</label>
                           </p>
                             <span class="field-validation-valid" data-valmsg-for="Category" data-valmsg-replace="true"></span>
                         </div>
                         <div class="row">
-                          <label for="Subject">konu</label>
-                          <input class="text-box single-line" data-val="true" data-val-required="bir konu başlığı vermeniz gerekmektedir" id="Subject" name="Subject" placeholder="" type="text" value="" autocapitalize="off" autocorrect="off">
+                          <label for="Subject">{% trans "konu" %}</label>
+                          <input class="text-box single-line" data-val="true" data-val-required="{% trans "bir konu başlığı vermeniz gerekmektedir" %}" id="Subject" name="Subject" placeholder="" type="text" value="" autocapitalize="off" autocorrect="off">
                           <span class="field-validation-valid" data-valmsg-for="Subject" data-valmsg-replace="true"></span>
                         </div>
                         <div class="row">
-                          <label for="Body">açıklama</label>
-                          <textarea cols="50" data-val="true" data-val-required="bir mesaj yazmanız gerekmektedir" id="Body" name="Body" rows="10"></textarea>
+                          <label for="Body">{% trans "açıklama" %}</label>
+                          <textarea cols="50" data-val="true" data-val-required="{% trans "bir mesaj yazmanız gerekmektedir" %}" id="Body" name="Body" rows="10"></textarea>
                           <span class="field-validation-valid" data-valmsg-for="Body" data-valmsg-replace="true"></span>
                         </div><br>
                         <div class="actions">
-                          <a class="waves-effect waves-light btn pull-right"><i class="fa fa-paper-plane">&nbsp;</i>gönder</a>
+                          <a class="waves-effect waves-light btn pull-right"><i class="fa fa-paper-plane">&nbsp;</i>{% trans "gönder" %}</a>
                         </div>
                     </fieldset>
                 </div><br><br>
                 <div class="row">
-                    <span><strong>Şirket Bilgileri</strong></span>
-                    <p>Tel: 11111111</p>
+                    <span><strong>{% trans "Şirket Bilgileri" %}</strong></span>
+                    <p>{% trans "Tel: 11111111" %}</p>
                 </div>
             </div>
         </div>
